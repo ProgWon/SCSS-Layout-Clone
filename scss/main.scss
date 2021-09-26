@@ -1,0 +1,284 @@
+@mixin flex($fd: row, $ai: stretch, $jc: flex-start, $fw: nowrap) {
+    display: flex;
+    flex: {
+        direction: $fd;
+        wrap: $fw;
+    }
+    align-items: $ai;
+    justify-content: $jc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.material-icons-outlined {
+    color: rgb(96, 96, 96);
+}
+
+hr {
+    height: 1px;
+    background-color: #e5e5e5;
+    border: none;
+}
+
+// header 
+.header {
+    background-color: #fff;
+    padding: 0 16px;
+    position: sticky;
+    top: 0;
+    @include flex($jc: space-between, $ai: center);
+
+    // header left
+    &__left {
+        @include flex($ai: center);
+
+        & .logo {
+            width: 120px;
+            height: 56px;
+            margin-left: 15px;
+        }
+
+        & .menu-icon {
+            padding: 0 7px;
+            cursor: pointer;
+        }
+    }
+
+    // header search
+    &__search {
+        & form {
+            border: 1px solid #ddd;
+            height: 35px;
+            display: flex;
+        }
+
+        & input {
+            width: 40vw;
+            padding: 10px;
+            border-radius: 0;
+            border: none;
+        }
+
+        & button {
+            width: 50px;
+            height: 100%;
+            border: none;
+            border-radius: 0;
+        }
+    }
+}
+
+// main
+.main {
+    height: calc(100vh - 70px);
+    display: flex;
+    overflow: hidden;
+
+    &__sidebar {
+        height: 100%;
+        width: 230px;
+        background-color: white;
+        overflow-y: scroll;
+
+        &__categories {
+            @include flex($fd:column);
+            width: 100%;
+            margin: {
+                top: 15px;
+                bottom: 15px;
+            }
+        }
+
+        &__category {
+            @include flex($ai: center);
+            padding: 12px 25px;
+
+            & span {
+                margin-left: 15px;
+            }
+
+            &:hover {
+                background: #e5e5e5;
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__sidebar-small {
+        display: none;
+        height: 100%;
+        background-color: white;
+        overflow-y: scroll;
+
+        &__categories {
+            @include flex($fd: column);
+            width: 100%;
+            margin: {
+                top: 15px;
+                bottom: 15px;
+            }
+        }
+
+        &__category {
+            @include flex($fd:column, $ai:center, $jc:center);
+            padding: 12px 25px;
+
+            & span {
+                margin-top: 15px;
+            }
+
+            &:hover {
+                background: #e5e5e5;
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__right-container {
+        @include flex($fd: column);
+        width: calc(100% - 230px);
+    }
+
+    &__filterbar {
+        @include flex($ai: center);
+        position: sticky;
+        height: 60px;
+        background: #fff;
+        border-top: 1px solid #dbdbdb;
+        padding: 0 20px;
+        overflow: {
+            x: auto;
+            y: hidden;
+        }
+
+        &-options {
+            padding: 10px 20px;
+            border-radius: 50px;
+            background: #f0f0f0;
+            border: 1px solid #dbdbdb;
+            margin-right: 10px;
+            color: #242424;
+            font-size: 15px;
+            cursor: pointer;
+
+            &.active {
+                color: #fff;
+                background: #242424;
+            }
+        }
+    }
+
+    &__videos {
+        background-color: #f9f9f9;
+        width: 100%;
+        height: 100%;
+        padding: 15px 25px;
+        border-top: 1px solid #ddd;
+        overflow-y: auto;
+
+        &__container {
+            @include flex($fd:row,$jc:space-around, $fw: wrap);
+        }
+
+        .video {
+            width: 310px;
+            margin: {
+                right: 10px;
+                bottom: 30px;
+            }
+
+            &__thumbnail {
+                width: 100%;
+                height: 170px;
+
+                img {
+                    object-fit: cover;
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+
+            &__detail {
+                display: flex;
+                margin-top: 10px;
+
+                .author img {
+                    object-fit: cover;
+                    border-radius: 50%;
+                    height: 40px;
+                    width: 40px;
+                    margin-right: 10px;
+                }
+
+                .title {
+                    @include flex($fd: column);
+
+                    h3 {
+                        color: rgb(3, 3, 3);
+                        line-height: 18px;
+                        font-size: 14px;
+                        margin-bottom: 6px;
+                    }
+
+                    a,
+                    span {
+                        text-decoration: none;
+                        color: rgb(96, 96, 96);
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+}
+// media query
+@media (max-width: 1440px) {
+    .main__sidebar {
+        display: none;
+    }
+
+    .main__sidebar-small {
+        display: block;
+    }
+
+    .main__right-container {
+        width: calc(100% - 90px);
+    }
+}
+
+@media (max-width: 919px) {
+    .main__sidebar-small {
+        display: none;
+    }
+
+    .main__right-container {
+        width: 100%;
+    }
+}
+
+@media (max-width: 685px) {
+    .header__search {
+        display: none;
+    }
+
+    .main__sidebar {
+        display: none;
+    }
+
+    .main__sidebar-small {
+        display: none;
+    }
+
+    .main__right-container {
+        width: 100%;
+    }
+}
+

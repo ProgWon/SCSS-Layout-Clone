@@ -1,0 +1,23 @@
+{
+  "name": "scss-layout-clone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ProgWon/SCSS-Layout-Clone.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ProgWon/SCSS-Layout-Clone/issues"
+  },
+  "homepage": "https://github.com/ProgWon/SCSS-Layout-Clone#readme",
+  "devDependencies": {
+    "sass": "^1.42.1"
+  }
+}
